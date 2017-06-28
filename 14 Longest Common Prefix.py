@@ -5,16 +5,21 @@ class Solution(object):
         :rtype: str
         """
         if strs == []:
-            return strs
+            output = ''
+            return output
         
         prefix = list(strs[0])
-        print prefix
         
         for context in strs:
             strList = list(context)
-            for i,j in prefix:
-                if j != strList[i]:
-                    del prefix[i]
+            for i,j in enumerate(prefix):
+                ##如果前缀字母不一致，则删去后面内容
+                if i < len(strList):
+                    if j != strList[i]:
+                        del prefix[i:]
+                ##如果单词比较少，则删去后面内容
+                else:
+                    del prefix[i:]
                     
         output = ''.join(prefix)
         return output
